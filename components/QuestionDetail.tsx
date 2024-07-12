@@ -22,16 +22,14 @@ const QuestionDetail = ({ question }: Props) => {
       <hr className="mb-4 mt-2" />
       <div dangerouslySetInnerHTML={{ __html: content }} />
       {steps?.length ? (
-        <div className="grid h-[400px] grid-cols-2 gap-10 mt-10">
-          <div className="flex h-full w-full items-center justify-center">
-            <div className="w-full">
-              <Slider ref={ref} adaptiveHeight dots={false} vertical verticalSwiping>
-                {steps?.map(({ image, id, description }) => {
-                  // eslint-disable-next-line @next/next/no-img-element
-                  return <img src={image.data.attributes.url} key={id} alt={description} />;
-                })}
-              </Slider>
-            </div>
+        <div className="mt-10 grid h-[400px] grid-cols-2 gap-10 justify-center items-center">
+          <div className="max-h-[400px] max-w-[400px] m-auto">
+            <Slider ref={ref} dots={false} vertical verticalSwiping>
+              {steps?.map(({ image, id, description }) => {
+                // eslint-disable-next-line @next/next/no-img-element
+                return <img src={image.data.attributes.url} key={id} alt={description}  />;
+              })}
+            </Slider>
           </div>
 
           <div className="flex flex-col gap-4 ">

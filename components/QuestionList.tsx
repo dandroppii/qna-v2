@@ -2,11 +2,17 @@ import { IQuestionResponse } from '@/types/common';
 import dayjs from 'dayjs';
 import Link from 'next/link';
 
+import ListQuestionsEmpty from './ListQuestionsEmpty';
+
 interface Props {
   questions: IQuestionResponse[];
 }
 
 const QuestionList = ({ questions }: Props) => {
+  if (!questions.length) {
+    return <ListQuestionsEmpty />;
+  }
+
   return (
     <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2">
       {questions?.map(({ id, attributes }) => (
