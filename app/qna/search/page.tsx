@@ -13,3 +13,5 @@ export default async function CategoryDetail({ searchParams }: any) {
 
   return <QuestionList questions={res.data} />;
 }
+
+export const runtime = 'edge';
