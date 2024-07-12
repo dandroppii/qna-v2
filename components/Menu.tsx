@@ -23,7 +23,7 @@ const Menu = ({ navData }: Props) => {
   const { id: categoryId, questionId } = useParams();
   const [activeMenu, setActiveMenu] = useState<any>();
   const [activeMenuMobile, setActiveMenuMobile] = useState(false);
-  const router = useRouter()
+  const router = useRouter();
 
   const toggle = (id: string, active: boolean) => {
     const newAct = { ...activeMenu, [`${id}`]: active } as any;
@@ -58,12 +58,12 @@ const Menu = ({ navData }: Props) => {
     <div>
       <nav className="fixed top-0 z-50 w-full border-b border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800">
         <div className="px-3 py-3 lg:px-5 lg:pl-3">
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between gap-4">
             <div className="flex items-center justify-start rtl:justify-end">
               <button
                 onClick={() => setActiveMenuMobile(!activeMenuMobile)}
                 type="button"
-                className="mr-5 inline-flex items-center rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2
+                className="mr-2 inline-flex items-center rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2
                   focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600 sm:hidden"
               >
                 <svg
@@ -85,7 +85,7 @@ const Menu = ({ navData }: Props) => {
               </Link>
             </div>
 
-            <form className="w-[30%] max-w-xl" onSubmit={onSubmit} method="none">
+            <form className=" max-w-xl sm:w-[30%]" onSubmit={onSubmit} method="none">
               <div className="relative">
                 <input
                   type="search"
