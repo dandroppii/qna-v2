@@ -8,6 +8,6 @@ export const Skeleton = (props: SkeletonProps) => {
   const { className } = props
 
   return (
-    <div className={cx(className, 'animate-pulse bg-gray-800 bg-opacity-10')} />
+    <div className={cx(className, 'animate-pulse bg-gray-200 bg-opacity-10')} />
   )
 }
