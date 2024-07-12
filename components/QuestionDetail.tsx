@@ -22,7 +22,7 @@ const QuestionDetail = ({ question }: Props) => {
       <hr className="mb-4 mt-2" />
       <div dangerouslySetInnerHTML={{ __html: content }} />
       {steps?.length ? (
-        <div className="mt-10 grid h-[400px] grid-cols-2 gap-10 justify-center items-center">
+        <div className="mt-10 grid h-[400px] grid-cols-1 sm:grid-cols-2 gap-10 justify-center items-center">
           <div className="max-h-[400px] max-w-[400px] m-auto">
             <Slider ref={ref} dots={false} vertical verticalSwiping>
               {steps?.map(({ image, id, description }) => {
