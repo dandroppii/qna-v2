@@ -42,3 +42,6 @@ export default function RootLayout({ children, sidebar }: Readonly<Props>) {
     </html>
   );
 }
+
+export const runtime = "nodejs";
+export const dynamic = "force-static";

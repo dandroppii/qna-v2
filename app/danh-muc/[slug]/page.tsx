@@ -11,7 +11,6 @@ export default async function CategoryDetail({
 }: Readonly<{
   searchParams: any;
 }>) {
-  console.log('🚀 ~ questions:', searchParams.id);
   const questions = await getQuestionOfCategory(searchParams.id);
 
   return <QuestionList questions={questions.data} />;
@@ -31,3 +30,5 @@ export async function generateStaticParams() {
     return [];
   }
 }
+
+export const dynamicParams = false;

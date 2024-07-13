@@ -27,3 +27,6 @@ export async function searchQuestion(searchTerm: string): Promise<BaseResponse<I
   const jsonData = await response.json();
   return jsonData;
 }
+
+export const dynamic = 'force-dynamic';
+export const runtime = 'edge';
