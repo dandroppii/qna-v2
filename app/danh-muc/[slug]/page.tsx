@@ -25,7 +25,7 @@ export async function generateStaticParams() {
       const slug = convertToSlug(attributes.name);
       paths.push({ slug: `${slug}`, id: `${id}` });
     });
-    console.log('🚀 ~ response.data.forEach ~ paths:', paths);
+    console.log('🚀 ~ response.data.forEach ~ paths2:', paths);
     return paths;
   } catch (error) {
     return [];
