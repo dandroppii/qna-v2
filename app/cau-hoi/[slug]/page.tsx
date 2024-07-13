@@ -1,10 +1,10 @@
 import { getCategory } from '@/app/api/category';
 import { getQuestionDetail } from '@/app/api/question/[id]';
-import dynamic from 'next/dynamic';
+import dynamicR from 'next/dynamic';
 
 import { convertToSlug } from '@/utils/slug';
 
-const QuestionDetailComponent = dynamic(() => import('@/components/QuestionDetail'), { ssr: false });
+const QuestionDetailComponent = dynamicR(() => import('@/components/QuestionDetail'), { ssr: false });
 
 export default async function QuestionDetail({ searchParams }: any) {
   console.log('🚀 ~ QuestionDetail ~ searchParams:', searchParams.id);
@@ -29,3 +29,5 @@ export async function generateStaticParams() {
     return [];
   }
 }
+
+export const runtime = 'edge';

@@ -1,10 +1,10 @@
 import { getCategory } from '@/app/api/category';
 import { getQuestionOfCategory } from '@/app/api/category/[id]';
-import dynamic from 'next/dynamic';
+import dynamicR from 'next/dynamic';
 
 import { convertToSlug } from '@/utils/slug';
 
-const QuestionList = dynamic(() => import('@/components/QuestionList'), { ssr: false });
+const QuestionList = dynamicR(() => import('@/components/QuestionList'), { ssr: false });
 
 export default async function CategoryDetail({
   searchParams,
@@ -20,10 +20,10 @@ export default async function CategoryDetail({
 export async function generateStaticParams() {
   try {
     const response = await getCategory();
-    const paths: { slug: string }[] = [];
+    const paths: { slug: string; id: string }[] = [];
     response.data.forEach(({ id, attributes }) => {
       const slug = convertToSlug(attributes.name);
-      paths.push({ slug: `${slug}?id=${id}` });
+      paths.push({ slug: `${slug}`, id: `${id}` });
     });
     console.log('🚀 ~ response.data.forEach ~ paths:', paths);
     return paths;
@@ -31,3 +31,5 @@ export async function generateStaticParams() {
     return [];
   }
 }
+
+export const runtime = 'edge';

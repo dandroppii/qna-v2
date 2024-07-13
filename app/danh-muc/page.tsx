@@ -8,3 +8,5 @@ export default async function CategoryDetail() {
   const slug = convertToSlug(response.data[0].attributes.name);
   redirect(`/danh-muc/${slug}?id=${response.data[0].id}`);
 }
+
+export const runtime = 'edge';

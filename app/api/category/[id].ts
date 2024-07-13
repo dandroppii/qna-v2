@@ -13,3 +13,4 @@ export async function getQuestionOfCategory(id: string): Promise<BaseResponse<IQ
   return jsonData
 }
  
+export const runtime = 'edge';
