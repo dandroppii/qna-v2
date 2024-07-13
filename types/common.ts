@@ -92,6 +92,7 @@ export interface IGetQuestionResponse {
 export interface IGetCategoryResponse {
   id: number;
   attributes: {
+    name: string;
     qna_questions: {
       data: IQuestionResponse[];
     };

@@ -2,10 +2,13 @@ import { getCategory } from '@/app/api/category';
 import { getQuestionDetail } from '@/app/api/question/[id]';
 import dynamic from 'next/dynamic';
 
+import { convertToSlug } from '@/utils/slug';
+
 const QuestionDetailComponent = dynamic(() => import('@/components/QuestionDetail'), { ssr: false });
 
-export default async function QuestionDetail({ params }: Readonly<{ params: { questionId: string } }>) {
-  const question = await getQuestionDetail(params.questionId);
+export default async function QuestionDetail({ searchParams }: any) {
+  console.log('🚀 ~ QuestionDetail ~ searchParams:', searchParams.id);
+  const question = await getQuestionDetail(searchParams.id);
 
   return <QuestionDetailComponent question={question.data} />;
 }
@@ -13,16 +16,16 @@ export default async function QuestionDetail({ params }: Readonly<{ params: { qu
 export async function generateStaticParams() {
   try {
     const response = await getCategory();
-    const paths: { questionId: string }[] = [];
+    const paths: { slug: string }[] = [];
     response.data.forEach(({ attributes: { qna_questions } }) => {
-      qna_questions?.data?.forEach(({ id: qId }) => {
-        paths.push({ questionId: `${qId}` });
+      qna_questions?.data?.forEach(({ id: qId, attributes }) => {
+        const slug = convertToSlug(attributes.title);
+        paths.push({ slug: `${slug}?id=${qId}` });
       });
     });
+    console.log('🚀 ~ qna_questions?.data?.forEach ~ paths:', paths);
     return paths;
   } catch (error) {
     return [];
   }
 }
-
-export const dynamicParams = false;

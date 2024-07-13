@@ -1,7 +1,10 @@
 import { getCategory } from '@/app/api/category';
 import { redirect } from 'next/navigation';
 
+import { convertToSlug } from '@/utils/slug';
+
 export default async function CategoryDetail() {
   const response = await getCategory();
-  redirect(`/qna/${response.data[0].id}`);
+  const slug = convertToSlug(response.data[0].attributes.name);
+  redirect(`/danh-muc/${slug}?id=${response.data[0].id}`);
 }

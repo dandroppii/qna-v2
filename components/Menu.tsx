@@ -6,6 +6,8 @@ import Link from 'next/link';
 import { redirect, useParams, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
+import { convertToSlug } from '@/utils/slug';
+
 interface Props {
   navData: {
     id: number;
@@ -33,7 +35,7 @@ const Menu = ({ navData }: Props) => {
 
   const onSubmit = (e: any) => {
     e.preventDefault();
-    router.push(`/qna/search?q=${e.target.search.value}`);
+    router.push(`/tim-kiem?q=${e.target.search.value}`);
   };
 
   useEffect(() => {
@@ -175,7 +177,7 @@ const Menu = ({ navData }: Props) => {
                         {children.map(({ key, icon, label }) => (
                           <Link
                             key={key}
-                            href={`/qna/${key}`}
+                            href={`/danh-muc/${convertToSlug(label)}?id=${key}`}
                             className={classNames(
                               `group flex w-full items-center rounded-lg p-2 pl-11 text-gray-900 transition duration-75 hover:bg-gray-100
                               dark:text-white dark:hover:bg-gray-700`,
